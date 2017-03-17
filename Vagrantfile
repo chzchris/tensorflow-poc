@@ -24,6 +24,12 @@ Vagrant.configure(2) do |config|
   end
 
   $user_script = <<-SCRIPT
+  sudo apt-get update
+  sudo apt-get install python3-pip -y
+  sudo pip3 install virtualenv
+  sudo virtualenv --system-site-packages ~/tensorflow
+  source ~/tensorflow/bin/activate
+  sudo pip3 install --upgrade tensorflow
   SCRIPT
 
   config.vm.provision "shell", inline: $user_script, privileged: false
